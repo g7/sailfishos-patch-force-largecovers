@@ -1,0 +1,8 @@
+{
+	"name": "Force large covers",
+	"description": "This patch forces the large covers in the application switcher",
+	"category": "homescreen",
+	"infos": {
+		"maintainer": "Eugenio Paolantonio"
+	}
+}

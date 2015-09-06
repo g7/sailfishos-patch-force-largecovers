@@ -1,0 +1,41 @@
+Name: sailfishos-patch-force-largecovers
+Summary: Force largecovers
+Version: 1.1.9.28
+Release: 1
+BuildArch: noarch
+# The contents of the Group field should be one of the groups listed here:
+# http://gitorious.org/meego-developer-tools/spectacle/blobs/master/data/GROUPS
+Group: Applications/Productivity
+URL: http://me.medesimo.eu
+License: GPLv2+
+# This must be generated before uploading a package to a remote build service.
+# Usually this line does not need to be modified.
+Sources:
+- '%{name}-%{version}.tar.bz2'
+Description: |
+  Patch that forces the large covers in the application switcher
+Configure: none
+# The qtc5 builder inserts macros to allow QtCreator to have fine
+# control over qmake/make execution
+Builder: qtc5
+
+# This section specifies build dependencies that are resolved using pkgconfig.
+# This is the preferred way of specifying build dependencies for your package.
+#PkgConfigBR:
+
+# Build dependencies without a pkgconfig setup can be listed here
+# PkgBR:
+#   - package-needed-to-build
+
+# Runtime dependencies which are not automatically detected
+Requires:
+  - patchmanager
+  - sailfish-version >= 1.1.9-10.33.28.jolla
+
+# All installed files
+Files:
+  - '%{_datadir}/patchmanager'
+
+# For more information about yaml and what's supported in Sailfish OS
+# build system, please see https://wiki.merproject.org/wiki/Spectacle
+

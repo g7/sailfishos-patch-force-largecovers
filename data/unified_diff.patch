@@ -1,0 +1,68 @@
+diff -Naur lipstick-jolla-home-qt5/layers/HomeLayer.qml /usr/share/lipstick-jolla-home-qt5/layers/HomeLayer.qml
+--- a/usr/share/lipstick-jolla-home-qt5/layers/HomeLayer.qml	2015-09-04 21:33:22.000000000 +0200
++++ b/usr/share/lipstick-jolla-home-qt5/layers/HomeLayer.qml	2015-09-06 15:47:48.927451420 +0200
+@@ -78,7 +78,7 @@
+         height: rotation % 180 == 0
+                     ? Lipstick.compositor.height
+                     : Lipstick.compositor.width
+-        z: -1000
++        z: currentItem != switcher ? -1000 : 100
+ 
+         StatusBar {
+             id: statusBar
+@@ -88,7 +88,7 @@
+             backgroundVisible: true
+             y: -currentItem.statusOffset * (1.0-homescreen.progress) - (alternateItem ? alternateItem.statusOffset * homescreen.progress : 0)
+             updatesEnabled: Lipstick.compositor.homeActive || Lipstick.compositor.homePeeking
+-            opacity: Math.min(1.0, opacityFromY, currentItem.statusOpacity)
++            opacity: currentItem != switcher ? Math.min(1.0, opacityFromY, currentItem.statusOpacity) : 1.0
+         }
+     }
+ 
+diff -Naur lipstick-jolla-home-qt5/layers/SwitcherLayer.qml /usr/share/lipstick-jolla-home-qt5/layers/SwitcherLayer.qml
+--- a/usr/share/lipstick-jolla-home-qt5/layers/SwitcherLayer.qml	2015-09-04 21:33:22.000000000 +0200
++++ b/usr/share/lipstick-jolla-home-qt5/layers/SwitcherLayer.qml	2015-09-06 14:06:24.060052090 +0200
+@@ -10,7 +10,7 @@
+     property alias overlayItem: overlay
+ 
+     property real contentY
+-    statusOffset: Math.min(contentY, statusBar.height + Theme.paddingMedium)
++    statusOffset: desktop.switcher.closeApplicationEnabled ? Math.min(contentY, statusBar.height + Theme.paddingMedium) : 0
+ 
+     Item {
+         id: content
+diff -Naur lipstick-jolla-home-qt5/main.qml /usr/share/lipstick-jolla-home-qt5/main.qml
+--- a/usr/share/lipstick-jolla-home-qt5/main.qml	2000-01-01 01:00:00.000000000 +0100
++++ b/usr/share/lipstick-jolla-home-qt5/main.qml	2015-09-06 14:07:15.257132620 +0200
+@@ -66,7 +66,6 @@
+         onSwitcherVisibleChanged: {
+             if (!switcherVisible) {
+                 switcher.closeApplicationEnabled = false
+-                switcher.resetPosition(400)
+             }
+         }
+ 
+diff -Naur lipstick-jolla-home-qt5/statusarea/StatusBar.qml /usr/share/lipstick-jolla-home-qt5/statusarea/StatusBar.qml
+--- a/usr/share/lipstick-jolla-home-qt5/statusarea/StatusBar.qml	2015-09-04 21:33:22.000000000 +0200
++++ b/usr/share/lipstick-jolla-home-qt5/statusarea/StatusBar.qml	2015-09-06 16:16:00.080855890 +0200
+@@ -26,7 +26,7 @@
+             bottomMargin: -Theme.paddingLarge
+         }
+         gradient: Gradient {
+-            GradientStop { position: 0; color: Qt.rgba(0,0,0,0.1) }
++            GradientStop { position: 0; color: Theme.rgba(Theme.highlightDimmerColor, desktop.switcher.housekeepingMenuActive ? 0.1 : 0.7) } 
+             GradientStop { position: 1; color: "transparent" }
+         }
+         opacity: 1.0 - Math.abs(statusBar.y/Theme.paddingMedium)
+diff -Naur lipstick-jolla-home-qt5/switcher/Switcher.qml /usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml
+--- a/usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml	2015-09-04 21:33:22.000000000 +0200
++++ b/usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml	2015-09-05 23:02:17.263329200 +0200
+@@ -316,7 +316,7 @@
+             readonly property real minimumHeight: switcherRoot.height - statusBarHeight - ((largeScreen ? 5 : 3) * Theme.paddingLarge)
+             readonly property real maximumWidth: switcherRoot.width - 2*Theme.paddingLarge
+ 
+-            readonly property bool allowSmallCovers: !largeScreen
++            readonly property bool allowSmallCovers: false
+             readonly property int smallColumns: (maximumWidth + spacing) / (Theme.coverSizeSmall.width + spacing)
+ 
+             readonly property int largeColumns: Math.min(4, (maximumWidth + spacing) / (Theme.coverSizeLarge.width + spacing))
