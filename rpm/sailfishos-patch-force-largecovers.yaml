@@ -30,7 +30,7 @@ Builder: qtc5
 # Runtime dependencies which are not automatically detected
 Requires:
   - patchmanager
-  - sailfish-version >= 1.1.9-10.33.28.jolla
+  - sailfish-version >= 2.0.0-10.34.10.jolla
 
 # All installed files
 Files:
