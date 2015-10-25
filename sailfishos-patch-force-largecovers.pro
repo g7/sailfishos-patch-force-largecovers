@@ -22,8 +22,8 @@ INSTALLS += \
 
 
 OTHER_FILES += \
-    rpm/sailfishos-patch-force-largecovers.changes.in \
     rpm/sailfishos-patch-force-largecovers.spec \
     rpm/sailfishos-patch-force-largecovers.yaml \
     data/unified_diff.patch \
-    data/patch.json
+    data/patch.json \
+    rpm/sailfishos-patch-force-largecovers.changes
