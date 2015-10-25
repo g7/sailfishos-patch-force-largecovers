@@ -8,5 +8,11 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sun Oct 25 2015 Eugenio "g7" Paolantonio <me@medesimo.eu> 2.0.0.10-1
+- [patch] Updated for SailfishOS 2.0.0 Saimaa; Fix warnings during lipstick initialization
+- [packaging] Ship the changelog
+- [packaging] Bump sailfish-version requirement to match 2.0.0 Saimaa
+- [packaging] Require latest lipstick-jolla-home-qt5
+
 * Sun Sep 06 2015 Eugenio "g7" Paolantonio <me@medesimo.eu> 1.1.9.28-1
 - Initial release
