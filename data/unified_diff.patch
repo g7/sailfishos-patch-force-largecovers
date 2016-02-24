@@ -25,7 +25,7 @@
  
      property real contentY
 -    statusOffset: Math.min(contentY, statusBar.height + Theme.paddingMedium)
-+    statusOffset: (desktop != null && desktop.switcher.closeApplicationEnabled) ? Math.min(contentY, statusBar.height + Theme.paddingMedium) : 0
++    statusOffset: (desktop != null && desktop.switcher.housekeepingMenuActive) ? Math.min(contentY, statusBar.height + Theme.paddingMedium) : 0
  
      Item {
          id: content
