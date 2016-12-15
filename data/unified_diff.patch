@@ -1,6 +1,6 @@
 --- a/usr/share/lipstick-jolla-home-qt5/layers/HomeLayer.qml
 +++ b/usr/share/lipstick-jolla-home-qt5/layers/HomeLayer.qml
-@@ -79,7 +79,7 @@ Pannable {
+@@ -169,7 +169,7 @@ Pannable {
          height: rotation % 180 == 0
                      ? Lipstick.compositor.height
                      : Lipstick.compositor.width
@@ -9,7 +9,7 @@
  
          StatusBar {
              id: statusBar
-@@ -89,7 +89,7 @@ Pannable {
+@@ -179,7 +179,7 @@ Pannable {
              backgroundVisible: true
              y: -currentItem.statusOffset * (1.0-homescreen.progress) - (alternateItem ? alternateItem.statusOffset * homescreen.progress : 0)
              updatesEnabled: Lipstick.compositor.homeActive || Lipstick.compositor.homePeeking
@@ -35,7 +35,7 @@
              bottomMargin: -Theme.paddingLarge
          }
          gradient: Gradient {
--            GradientStop { position: 0; color: Qt.rgba(0,0,0,0.1) }
+-            GradientStop { position: 0; color: Theme.rgba(Theme.highlightDimmerColor, Theme.highlightBackgroundOpacity) }
 +            GradientStop {
 +                position: 0;
 +                color: Theme.rgba(
@@ -50,7 +50,7 @@
          opacity: 1.0 - Math.abs(statusBar.y/Theme.paddingMedium)
 --- a/usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml
 +++ b/usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml
-@@ -32,11 +32,6 @@ SilicaFlickable {
+@@ -33,11 +33,6 @@ SilicaFlickable {
      onSwitcherVisibleChanged: {
          if (!switcherVisible) {
              closeApplicationEnabled = false
@@ -60,9 +60,9 @@
 -        } else {
 -            cancelResetPosition()
          }
-     }
- 
-@@ -346,7 +341,7 @@ SilicaFlickable {
+         if (columnUpdateTimer.running) {
+             columnUpdateTimer.stop()
+@@ -350,7 +345,7 @@ SilicaFlickable {
              readonly property real minimumHeight: switcherRoot.height - statusBarHeight - ((largeScreen ? 5 : 3) * Theme.paddingLarge)
              readonly property real maximumWidth: switcherRoot.width - 2*Theme.paddingLarge
  
