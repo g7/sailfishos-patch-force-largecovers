@@ -1,6 +1,6 @@
 {
-	"name": "Force large covers",
-	"description": "This patch forces the large covers in the application switcher",
+    "name": "Force cover size",
+    "description": "This patch forces a specified cover size in the application switcher",
 	"category": "homescreen",
 	"infos": {
 		"maintainer": "Eugenio Paolantonio"
