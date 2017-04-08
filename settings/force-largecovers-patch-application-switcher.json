@@ -1,0 +1,16 @@
+{
+    "translation_catalog": "settings-system",
+    "entries": [
+        {
+            "path": "system_settings/look_and_feel/force_largecovers_patch_application_switcher",
+            "title": "Application switcher",
+            "translation_id": "settings_system-force_largecovers_patch_application_switcher",
+            "type": "page",
+            "icon": "image://theme/icon-m-levels",
+            "order": 320,
+            "params": {
+                "source": "/usr/share/jolla-settings/pages/force-largecovers-patch-application-switcher/force-largecovers-patch-application-switcher.qml"
+            }
+        }
+    ]
+}

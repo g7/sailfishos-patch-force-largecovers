@@ -17,8 +17,16 @@ TEMPLATE = aux
 patch.path = /usr/share/patchmanager/patches/eugenio-force-largecovers
 patch.files = data/unified_diff.patch data/patch.json
 
+settings-entry.path = /usr/share/jolla-settings/entries
+settings-entry.files = settings/force-largecovers-patch-application-switcher.json
+
+settings-qml.path = /usr/share/jolla-settings/pages/force-largecovers-patch-application-switcher
+settings-qml.files = settings/force-largecovers-patch-application-switcher.qml
+
 INSTALLS += \
-	patch
+        patch \
+        settings-entry \
+        settings-qml
 
 
 OTHER_FILES += \
@@ -26,4 +34,6 @@ OTHER_FILES += \
     rpm/sailfishos-patch-force-largecovers.yaml \
     data/unified_diff.patch \
     data/patch.json \
+    settings/force-largecovers-patch-application-switcher.json \
+    settings/force-largecovers-patch-application-switcher.qml \
     rpm/sailfishos-patch-force-largecovers.changes

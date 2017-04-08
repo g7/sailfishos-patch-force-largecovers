@@ -36,6 +36,7 @@ Requires:
 # All installed files
 Files:
   - '%{_datadir}/patchmanager'
+  - '%{_datadir}/jolla-settings'
 
 # For more information about yaml and what's supported in Sailfish OS
 # build system, please see https://wiki.merproject.org/wiki/Spectacle
