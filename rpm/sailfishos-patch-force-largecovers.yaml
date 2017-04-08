@@ -30,8 +30,8 @@ Builder: qtc5
 # Runtime dependencies which are not automatically detected
 Requires:
   - patchmanager
-  - lipstick-jolla-home-qt5 >= 0.31.17.5-10.94.2.jolla
-  - sailfish-version >= 2.0.0-10.34.10.jolla
+  - lipstick-jolla-home-qt5 >= 0.34.26.9-10.129.2.jolla
+  - sailfish-version >= 2.1.0-10.41.11.jolla
 
 # All installed files
 Files:
