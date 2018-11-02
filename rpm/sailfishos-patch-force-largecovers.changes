@@ -8,6 +8,10 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Fri Nov 02 2018 Eugenio "g7" Paolantonio <me@medesimo.eu> 3.0.0.5-1
+- [data] patch: updated for Sailfish OS 3.0.0.5 Lemmenjoki, use overlay color for the Status Bar gradient and allow sticking the Status Bar in the Events View
+- [settings] Allow configuring the 'Stick Status Bar in Events view' option
+
 * Sat Apr 08 2017 Eugenio "g7" Paolantonio <me@medesimo.eu> 2.1.0.11-1
 - [data] unified_diff: support cover size configuration and update to match 2.1.0 Iijoki
 - [sailfishos-patch-force-largecovers] Updated patch and package description
