@@ -33,6 +33,7 @@ Page {
         path: "/desktop/lipstick-jolla-home-qt5/homescreenSwitcher"
 
         property string coverSize: "large"
+        property bool alwaysStickStatusBar: false
 
     }
 
@@ -65,6 +66,18 @@ Page {
                     MenuItem { text: "Small" }
                     MenuItem { text: "Large" }
                 }
+            }
+
+            TextSwitch {
+                /* Stick status bar in events view */
+                id: alwaysStickStatusBarSwitch
+
+                automaticCheck: false
+                checked: switcherSettings.alwaysStickStatusBar
+                onClicked: switcherSettings.alwaysStickStatusBar = !switcherSettings.alwaysStickStatusBar
+
+                text: "Stick the Status Bar in Events view"
+                description: "If enabled, the Status Bar is sticked also in the Events view."
             }
 
         }
