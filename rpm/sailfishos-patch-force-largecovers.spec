@@ -13,7 +13,7 @@ Name:       sailfishos-patch-force-largecovers
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Force cover size
-Version:    3.0.0.5
+Version:    3.2.0.12
 Release:    1
 Group:      Applications/Productivity
 License:    GPLv2+
@@ -22,8 +22,8 @@ URL:        http://me.medesimo.eu
 Source0:    %{name}-%{version}.tar.bz2
 Source100:  sailfishos-patch-force-largecovers.yaml
 Requires:   patchmanager
-Requires:   lipstick-jolla-home-qt5 >= 1.0.31-1.18.2.jolla
-Requires:   sailfish-version >= 3.0.0-1.8.5.jolla
+Requires:   lipstick-jolla-home-qt5 >= 1.1.70.1-1.31.4.jolla
+Requires:   sailfish-version >= 3.2.0-1.14.12.jolla
 
 %description
 Patch that forces the large covers in the application switcher
