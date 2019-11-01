@@ -2,7 +2,7 @@ Index: /usr/share/lipstick-jolla-home-qt5/layers/HomeLayer.qml
 ===================================================================
 --- .orig/usr/share/lipstick-jolla-home-qt5/layers/HomeLayer.qml
 +++ /usr/share/lipstick-jolla-home-qt5/layers/HomeLayer.qml
-@@ -19,6 +19,8 @@ Pannable {
+@@ -19,6 +19,8 @@
      property alias statusBar: statusBar
      property alias partnerspaces: partnerspaces
      property alias dimmer: wallpaperDimmer
@@ -11,7 +11,7 @@ Index: /usr/share/lipstick-jolla-home-qt5/layers/HomeLayer.qml
  
      readonly property Item window: currentItem.window
      readonly property bool active: currentItem.active
-@@ -42,6 +44,15 @@ Pannable {
+@@ -42,6 +44,15 @@
      readonly property real _minimizeThreshold: width * (1.0 - _minimizedScale) / 2
      readonly property bool _transposed: Lipstick.compositor.topmostWindowAngle % 180 != 0
  
@@ -27,7 +27,7 @@ Index: /usr/share/lipstick-jolla-home-qt5/layers/HomeLayer.qml
      function partnerLayerForWindow(window) {
          for (var layer = switcherLayer.rightItem; layer != eventsLayer; layer = layer.rightItem) {
              if (JollaSystemInfo.isWindowForLauncherItem(window, layer.launcherItem)) {
-@@ -155,6 +166,8 @@ Pannable {
+@@ -155,6 +166,8 @@
  
          anchors.centerIn: parent
  
@@ -36,7 +36,7 @@ Index: /usr/share/lipstick-jolla-home-qt5/layers/HomeLayer.qml
          rotation: Lipstick.compositor.topmostWindowAngle
          Behavior on rotation {
              SequentialAnimation {
-@@ -170,17 +183,18 @@ Pannable {
+@@ -170,17 +183,18 @@
          height: rotation % 180 == 0
                      ? Lipstick.compositor.height
                      : Lipstick.compositor.width
@@ -61,20 +61,20 @@ Index: /usr/share/lipstick-jolla-home-qt5/layers/SwitcherLayer.qml
 ===================================================================
 --- .orig/usr/share/lipstick-jolla-home-qt5/layers/SwitcherLayer.qml
 +++ /usr/share/lipstick-jolla-home-qt5/layers/SwitcherLayer.qml
-@@ -22,7 +22,7 @@ PannableLayer {
+@@ -22,7 +22,7 @@
      property real contentY
      property bool menuOpen
  
 -    statusOffset: Math.min(contentY, statusBar.height + Theme.paddingMedium)
 +    statusOffset: (Lipstick.compositor.homeLayer.stickyStatusBar && !housekeeping) ? 0 : Math.min(contentY, statusBar.height + Theme.paddingMedium)
-     statusOpacity: menuOpen ? 0.4 : 1
+     statusOpacity: menuOpen ? Theme.opacityLow : 1
  
      Behavior on statusOpacity {
 Index: /usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml
 ===================================================================
 --- .orig/usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml
 +++ /usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml
-@@ -29,6 +29,8 @@ SilicaFlickable {
+@@ -29,6 +29,8 @@
      property bool housekeeping: false
      property bool menuOpen: housekeepingMenu.active
  
@@ -83,7 +83,7 @@ Index: /usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml
      property alias model: switcherModel
  
      property int secondLastAppIndex
-@@ -37,11 +39,6 @@ SilicaFlickable {
+@@ -37,11 +39,6 @@
      onSwitcherVisibleChanged: {
          if (!switcherVisible) {
              housekeeping = false
@@ -95,7 +95,7 @@ Index: /usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml
          }
          if (columnUpdateTimer.running) {
              columnUpdateTimer.stop()
-@@ -360,6 +357,9 @@ SilicaFlickable {
+@@ -364,6 +361,9 @@
          visible: Lipstick.compositor.switcherLayer.scale === 1.0 && switcherRoot.contentHeight > switcherRoot.height
      }
  
@@ -105,7 +105,7 @@ Index: /usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml
      MouseArea {
          id: switcherWrapper
  
-@@ -393,7 +393,6 @@ SilicaFlickable {
+@@ -397,7 +397,6 @@
              readonly property real minimumHeight: switcherRoot.height - statusBarHeight - ((largeScreen ? 5 : 3) * Theme.paddingLarge)
              readonly property real maximumWidth: switcherRoot.width - 2*Theme.paddingLarge
  
@@ -113,7 +113,7 @@ Index: /usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml
              readonly property int smallColumns: (maximumWidth + spacing) / (Theme.coverSizeSmall.width + spacing)
  
              readonly property int largeColumns: (maximumWidth + spacing) / (Theme.coverSizeLarge.width + spacing)
-@@ -417,7 +416,8 @@ SilicaFlickable {
+@@ -421,7 +420,8 @@
  
              function doUpdateColumns() {
                  var cols = switcherGrid.largeColumns
@@ -123,7 +123,7 @@ Index: /usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml
                      cols = switcherGrid.smallColumns
                  if (cols !== switcherGrid.columns) {
                      scrollAnimation.stop()
-@@ -442,7 +442,8 @@ SilicaFlickable {
+@@ -446,7 +446,8 @@
                  ScriptAction {
                      script: {
                          var cols = switcherGrid.largeColumns
@@ -137,7 +137,7 @@ Index: /usr/share/lipstick-jolla-home-qt5/statusarea/StatusBar.qml
 ===================================================================
 --- .orig/usr/share/lipstick-jolla-home-qt5/statusarea/StatusBar.qml
 +++ /usr/share/lipstick-jolla-home-qt5/statusarea/StatusBar.qml
-@@ -9,6 +9,8 @@ Item {
+@@ -10,6 +10,8 @@
  
      property real baseY: Theme.paddingMedium + Theme.paddingSmall
  
@@ -146,7 +146,7 @@ Index: /usr/share/lipstick-jolla-home-qt5/statusarea/StatusBar.qml
      property alias updatesEnabled: statusArea.updatesEnabled
      property alias recentlyOnDisplay: statusArea.recentlyOnDisplay
      property alias lockscreenMode: statusArea.lockscreenMode
-@@ -26,6 +28,7 @@ Item {
+@@ -27,6 +29,7 @@
              fill: parent
              bottomMargin: -2 * Theme.paddingLarge
          }
@@ -158,12 +158,12 @@ Index: /usr/share/lipstick-jolla-home-qt5/layers/EventsLayer.qml
 ===================================================================
 --- .orig/usr/share/lipstick-jolla-home-qt5/layers/EventsLayer.qml
 +++ /usr/share/lipstick-jolla-home-qt5/layers/EventsLayer.qml
-@@ -38,7 +38,7 @@ PannableLayer {
+@@ -38,7 +38,7 @@
      onHousekeepingChanged: if (housekeeping) Lipstick.compositor.topMenuLayer.housekeeping = false
      onTopMenuHousekeepingChanged: if (topMenuHousekeeping) housekeeping = false
  
 -    statusOffset: Math.min(contentY, statusBar.height + Theme.paddingMedium)
 +    statusOffset: Lipstick.compositor.homeLayer.stickyStatusBar ? 0 : Math.min(contentY, statusBar.height + Theme.paddingMedium)
-     statusOpacity: menuOpen ? 0.4 : 1
+     statusOpacity: menuOpen ? Theme.opacityLow : 1
  
      onHousekeepingAllowedChanged: {
