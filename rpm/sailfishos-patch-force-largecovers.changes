@@ -8,6 +8,9 @@
 # * date Author's Name <author's email> version-release
 # - Summary of changes
 
+* Sun Jun 14 2020 Eugenio "g7" Paolantonio <me@medesimo.eu> 3.3.0.14-1
+* [data] patch: updated for Sailfish OS 3.3.0.14 Rokua (Thanks to Arno Dekker)
+
 * Fri Nov 01 2019 Eugenio "g7" Paolantonio <me@medesimo.eu> 3.2.0.12-1
 - [data] patch: updated for Sailfish OS 3.2.0.12 Torronsuo
 
