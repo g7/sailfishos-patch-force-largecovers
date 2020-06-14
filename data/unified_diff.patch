@@ -106,13 +106,13 @@ Index: /usr/share/lipstick-jolla-home-qt5/switcher/Switcher.qml
          id: switcherWrapper
  
 @@ -397,7 +397,6 @@
-             readonly property real minimumHeight: switcherRoot.height - statusBarHeight - ((largeScreen ? 5 : 3) * Theme.paddingLarge)
-             readonly property real maximumWidth: switcherRoot.width - 2*Theme.paddingLarge
- 
+             columns: largeColumns
+             statusBarHeight: switcherRoot.statusBarHeight
+
 -            readonly property bool allowSmallCovers: !largeScreen
-             readonly property int smallColumns: (maximumWidth + spacing) / (Theme.coverSizeSmall.width + spacing)
- 
-             readonly property int largeColumns: (maximumWidth + spacing) / (Theme.coverSizeLarge.width + spacing)
+             readonly property int largeItemCount: largeColumns * largeRows
+
+             property QtObject ngfEffect
 @@ -421,7 +420,8 @@
  
              function doUpdateColumns() {
